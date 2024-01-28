@@ -1,0 +1,6 @@
+applicationType: cli
+defaultPackage: com.bbbang.license
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: gradle
+features: [app-name, gradle, http-client-test, jackson-databind, junit, kapt, kotlin, kotlin-extension-functions, logback, micronaut-build, picocli, picocli-junit, picocli-kotlin-application, reactor, reactor-http-client, readme, shade, yaml, yaml-build]

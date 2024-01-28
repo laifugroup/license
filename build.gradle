@@ -1,0 +1,56 @@
+plugins {
+    id("org.jetbrains.kotlin.jvm") version "1.9.21"
+    id("org.jetbrains.kotlin.kapt") version "1.9.21"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.9.21"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("io.micronaut.application") version "4.2.1"
+}
+
+version = "0.1"
+group = "com.bbbang.license"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    kapt("info.picocli:picocli-codegen")
+    implementation("info.picocli:picocli")
+    implementation("io.micrometer:context-propagation")
+    implementation("io.micronaut:micronaut-jackson-databind")
+    implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")
+    implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
+    implementation("io.micronaut.picocli:micronaut-picocli")
+    implementation("io.micronaut.reactor:micronaut-reactor")
+    implementation("io.micronaut.reactor:micronaut-reactor-http-client")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
+    runtimeOnly("org.yaml:snakeyaml")
+}
+
+
+application {
+    mainClass.set("com.bbbang.license.LicenseCommand")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("17")
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+micronaut {
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("com.bbbang.license.*")
+    }
+}
+
+
+
