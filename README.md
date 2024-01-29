@@ -1,6 +1,6 @@
-## License授权客户端
+## License授权cli工具
 
-本项目目的：使用证书的方式，防止客户欠费。
+本项目目的：使用类似SSL证书的方式，防止客户欠费。
 
 指令
 java -jar .\license-1.0.0-all.jar env
