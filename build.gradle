@@ -6,15 +6,16 @@ plugins {
     id("io.micronaut.application") version "4.2.1"
 }
 
-version = "0.1"
+version = "1.0.0"
 group = "com.bbbang.license"
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
-
 dependencies {
     kapt("info.picocli:picocli-codegen")
+
     implementation("info.picocli:picocli")
     implementation("io.micrometer:context-propagation")
     implementation("io.micronaut:micronaut-jackson-databind")
@@ -28,6 +29,16 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("org.yaml:snakeyaml")
+
+
+    implementation("org.mindrot:jbcrypt:${jbcryptVersion}")
+    implementation("com.bbbang.parent:platform-license-library-keymgr:${licenseVersion}", {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+        exclude group: 'org.slf4j', module: 'slf4j-simple'
+        exclude group: 'org.slf4j', module: 'slf4j-nop'
+    })
+    implementation("com.bbbang.parent:platform-license-library-keygen:${licenseVersion}")
+    implementation ("com.github.oshi:oshi-core:${oshiVersion}")
 }
 
 
