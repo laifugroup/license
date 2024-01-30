@@ -44,7 +44,7 @@ import javax.security.auth.x500.X500Principal
         val password = String(passwordChars)
 
         if (!PasswdUtils.verifyPassword(password)){
-            val passwordVerify="[passwd]密码错误,请重新输入"
+            val passwordVerify="[passwd]操作密码错误,请重新输入。"
             println(passwordVerify)
             return passwordVerify
         }
