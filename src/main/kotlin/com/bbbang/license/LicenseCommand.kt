@@ -12,7 +12,7 @@ import picocli.CommandLine.*
     mixinStandardHelpOptions = true,
     version = ["1.0.0"]
     ,
-    subcommands = [EnvironmentCmd::class, GeneratorCmd::class, InstallCmd::class, VerifyCmd::class, LoadCmd::class]
+    subcommands = [EnvironmentCmd::class, GeneratorCmd::class, InstallCmd::class,UnInstallCmd::class, VerifyCmd::class, LoadCmd::class]
 )
 class LicenseCommand : Runnable {
 
