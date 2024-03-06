@@ -10,7 +10,7 @@
 配套相关：
 
 1. oshi获取硬件信息
-2. true-license创建和验证证书基础库
+2. true-license创建和验证证书基础库 [在这里](https://github.com/laifugroup/platform-license-library)
 3. 业务项目中验证证书 <如项目启动/用户登录/web拦截器/jpa拦截器等的时候验证证书>
 ````
 open class OauthAppStartupEventListener: ApplicationEventListener<ServerStartupEvent> {
