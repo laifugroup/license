@@ -8,26 +8,25 @@ import oshi.SystemInfo
 class EnvUtils {
     companion object{
         fun getEnv(): LicenseInfo {
-            val systemInfo = SystemInfo()
-            val hal = systemInfo.hardware
+            val si = SystemInfo()
+            val hal = si.hardware
             val cupId = hal.processor.processorIdentifier.processorID
             val mainBoardSerial = hal.computerSystem.hardwareUUID
-            val networkIF=hal.networkIFs
-            val macList=networkIF.filterNotNull().joinToString(","){
+
+            val networkIF = hal.networkIFs
+            val macList = networkIF.filterNotNull().joinToString(",") {
                 it.macaddr
             }
-            val ipv4List=networkIF.filterNotNull().joinToString(","){
+            val ipv4List = networkIF.filterNotNull().joinToString(",") {
                 it.iPv4addr.filterNotNull().joinToString("-")
             }
-            val licenseInfo=LicenseInfo(cupId,ipv4List,macList,mainBoardSerial)
-            return licenseInfo
+            return LicenseInfo(cpu=cupId, ip=ipv4List, mac=macList, mainBoard =mainBoardSerial)
         }
 
-        fun getEnvFormat():String{
-            val licenseInfo=getEnv()
-            val objectMapper= ObjectMapper()
-            val json = objectMapper.writer(DefaultPrettyPrinter()).writeValueAsString(licenseInfo)
-            return json
+        fun getEnvFormat(): String {
+            val licenseInfo = getEnv()
+            val objectMapper = ObjectMapper()
+            return objectMapper.writer(DefaultPrettyPrinter()).writeValueAsString(licenseInfo)
         }
     }
 }

@@ -4,6 +4,7 @@ import com.bbbang.license.domain.LicenseInfo
 import com.bbbang.license.utils.EnvUtils
 import com.bbbang.license.utils.PasswdUtils
 import com.bbbang.parent.keygen.LicenseManager
+import com.bbbang.parent.keymgr.LicenseConstants
 import global.namespace.`fun`.io.api.Sink
 import global.namespace.`fun`.io.bios.BIOS.file
 import global.namespace.truelicense.api.LicenseManagementException
@@ -48,9 +49,9 @@ import javax.security.auth.x500.X500Principal
             println(passwordVerify)
             return passwordVerify
         }
-        val licenseInfo= EnvUtils.getEnv().apply {
-            this.days=licenseDays
-            this.licenseTo=licenseToUser
+        val licenseInfo= EnvUtils.getEnv().also {
+            it.days=licenseDays
+            it.licenseTo=licenseToUser
         }
         genLicense(licenseInfo)
         return  licenseInfo
@@ -67,10 +68,10 @@ import javax.security.auth.x500.X500Principal
         licenseInput.info = "仅授权${licenseInfo.licenseTo}使用"
 
         val extra = mapOf(
-            "ipAddress" to licenseInfo.ip,
-            "macAddress" to licenseInfo.mac,
-            "cpuSerial" to licenseInfo.cpu,
-            "mainBoardSerial" to licenseInfo.mainBoard,
+            LicenseConstants.ipAddress to licenseInfo.ip,
+            LicenseConstants.macAddress to licenseInfo.mac,
+            LicenseConstants.cpuSerial to licenseInfo.cpu,
+            LicenseConstants.mainBoardSerial to licenseInfo.mainBoard,
             )
         licenseInput.extra = extra
         val licenseFilePath="./license.lic"
